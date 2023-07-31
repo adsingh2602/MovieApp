@@ -8,11 +8,13 @@ import android.widget.ImageView;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
+import androidx.databinding.library.baseAdapters.BR;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.time.Instant;
+import java.time.temporal.TemporalAdjuster;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -20,30 +22,41 @@ import javax.annotation.Generated;
 @Generated("jsonschema2pojo")
 public class Movie extends BaseObservable implements Parcelable {
 
-    private static final int BR = 0;
-    
+    //private boolean adult;
+//    private double popularity;
+//    private int voteCount;
+//    private int id;
+//    private boolean video;
+//    private double voteAverage;
+//    private String releaseDate;
+//    private String title;
+//    private String originalLanguage;
+   // private String backdropPath;
+//    private String overview;
+  //  private ArrayList genreIds;
+  //  private String originalTitle;
+//    @SerializedName("poster_path")
+//    @Expose
+//    private String posterPath;
+
     // Use Glide Library Later to display the image
     @SerializedName("poster_path")
     @Expose
     private String posterPath;
     @BindingAdapter({"posterPath"})
-    public static void loadImage(ImageView imageView,String imageURL){
+    public static void loadImage(ImageView imageView, String imageURL){
 
         // BASIC IMAGE URL
         // https://image.tmdb.org/t/p/original/[poster_path]
 
         String imagePath = "https://image.tmdb.org/t/p/w500"+imageURL;
 
-
-        Instant Glide;
-        Glide = null;
-      //  Glide.with((TemporalAdjuster) imageView.getContext()).load(imagePath).into(imageView);
+        Glide.with((TemporalAdjuster) imageView.getContext()).load(imagePath).into(imageView);
 
 
     }
 
     @SerializedName("adult")
-    @Expose
     private Boolean adult;
     @SerializedName("overview")
     @Expose
@@ -84,7 +97,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
 
     // Parcel
-    public final static Parcelable.Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
         @Override
         public Movie createFromParcel(Parcel parcel) {
             return new Movie(parcel);
@@ -92,17 +105,9 @@ public class Movie extends BaseObservable implements Parcelable {
 
         @Override
         public Movie[] newArray(int i) {
-            return (new Movie[i]);
+            return new Movie[i];
         }
     };
-
-
-
-
-
-
-
-
 
     @Bindable
     public String getPosterPath() {
@@ -111,11 +116,8 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
-       // notifyPropertyChanged(BR.posterPath);
+        notifyPropertyChanged(BR.posterPath);
     }
-
-
-
 
     @Bindable
     public Boolean getAdult() {
@@ -124,7 +126,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setAdult(Boolean adult) {
         this.adult = adult;
-     //   notifyPropertyChanged(BR.adult);
+        notifyPropertyChanged(BR.adult);
     }
 
     @Bindable
@@ -134,7 +136,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setOverview(String overview) {
         this.overview = overview;
-      //  notifyPropertyChanged(BR.overview);
+        notifyPropertyChanged(BR.overview);
     }
     @Bindable
     public String getReleaseDate() {
@@ -143,7 +145,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
-      //  notifyPropertyChanged(BR.releaseDate);
+        notifyPropertyChanged(BR.releaseDate);
     }
     @Bindable
     public List<Integer> getGenreIds() {
@@ -151,8 +153,8 @@ public class Movie extends BaseObservable implements Parcelable {
     }
 
     public void setGenreIds(List<Integer> genreIds) {
-        this.genreIds = genreIds;
-      //  notifyPropertyChanged(BR.genreIds);
+        this.genreIds = (ArrayList) genreIds;
+        notifyPropertyChanged(BR.genreIds);
     }
     @Bindable
     public Integer getId() {
@@ -161,7 +163,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setId(Integer id) {
         this.id = id;
-       // notifyPropertyChanged(BR.id);
+        notifyPropertyChanged(BR.id);
     }
     @Bindable
     public String getOriginalTitle() {
@@ -170,7 +172,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setOriginalTitle(String originalTitle) {
         this.originalTitle = originalTitle;
-      //  notifyPropertyChanged(BR.originalTitle);
+        notifyPropertyChanged(BR.originalTitle);
     }
     @Bindable
     public String getOriginalLanguage() {
@@ -179,7 +181,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setOriginalLanguage(String originalLanguage) {
         this.originalLanguage = originalLanguage;
-      //  notifyPropertyChanged(BR.originalLanguage);
+        notifyPropertyChanged(BR.originalLanguage);
     }
     @Bindable
     public String getTitle() {
@@ -188,7 +190,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setTitle(String title) {
         this.title = title;
-      //  notifyPropertyChanged(BR.title);
+        notifyPropertyChanged(BR.title);
     }
     @Bindable
     public String getBackdropPath() {
@@ -197,7 +199,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
-       // notifyPropertyChanged(BR.backdropPath);
+        notifyPropertyChanged(BR.backdropPath);
     }
     @Bindable
     public Double getPopularity() {
@@ -206,7 +208,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setPopularity(Double popularity) {
         this.popularity = popularity;
-      //  notifyPropertyChanged(BR.popularity);
+        notifyPropertyChanged(BR.popularity);
     }
     @Bindable
     public Integer getVoteCount() {
@@ -215,7 +217,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
-      //  notifyPropertyChanged(BR.voteCount);
+        notifyPropertyChanged(BR.voteCount);
     }
     @Bindable
     public Boolean getVideo() {
@@ -224,7 +226,7 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setVideo(Boolean video) {
         this.video = video;
-       // notifyPropertyChanged(BR.video);
+        notifyPropertyChanged(BR.video);
     }
     @Bindable
     public Double getVoteAverage() {
@@ -233,8 +235,10 @@ public class Movie extends BaseObservable implements Parcelable {
 
     public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
-       // notifyPropertyChanged(BR.voteAverage);
+        notifyPropertyChanged(BR.voteAverage);
     }
+
+
 
     @Override
     public int describeContents() {
@@ -243,7 +247,6 @@ public class Movie extends BaseObservable implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
         parcel.writeValue(voteCount);
         parcel.writeValue(id);
         parcel.writeValue(video);
@@ -253,7 +256,7 @@ public class Movie extends BaseObservable implements Parcelable {
         parcel.writeValue(posterPath);
         parcel.writeValue(originalLanguage);
         parcel.writeValue(originalTitle);
-        //    parcel.writeList(genreIds);
+        parcel.writeList(genreIds); // Corrected: write the genreIds list to Parcel
         parcel.writeValue(backdropPath);
         parcel.writeValue(adult);
         parcel.writeValue(overview);
@@ -280,5 +283,6 @@ public class Movie extends BaseObservable implements Parcelable {
         this.overview = ((String) in.readValue((String.class.getClassLoader())));
         this.releaseDate = ((String) in.readValue((String.class.getClassLoader())));
     }
+
 
 }

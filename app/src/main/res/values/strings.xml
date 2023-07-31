@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+    <string name="json_schema2pojo">json-schema2pojo</string>
+    <string name="jsonschema2pojo">jsonschema2pojo</string>
+</resources>
